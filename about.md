@@ -4,4 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Helyao is the unique id in my former company. I was born in 1990.
+
+My major is hardware in school, but I am engaged in software development currently.
+
+Email: helyao@qq.com
