@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Technological System"
-date:   2/25/2017 4:10:21 PM +0800
+date:   2017-2-25 16:10:21 +0800
 categories: helyao update
 ---
 
