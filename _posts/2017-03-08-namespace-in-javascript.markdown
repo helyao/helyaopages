@@ -5,9 +5,7 @@ date:   2017-3-8 16:05:39 +0800
 categories: helyao update
 ---
 
-# Namespace in JavaScript
-
-> JavaScript的命名空间是使用匿名函数的立即执行函数来实现的
+JavaScript的命名空间是使用匿名函数的立即执行函数来实现的
 
 ## 变量声明提升（Variable Declaration Hoisting）
 
