@@ -7,7 +7,7 @@ categories: helyao update
 
 JavaScript的命名空间是使用匿名函数的立即执行函数来实现的
 
-## 变量声明提升 - Variable Declaration Hoisting
+### 变量声明提升 - Variable Declaration Hoisting
 
 > JavaScript引擎在预编译时，将函数体内的所有声明都提前到函数体的顶部，而赋值操作留在原处
 
@@ -33,7 +33,7 @@ JavaScript的命名空间是使用匿名函数的立即执行函数来实现的
 	undefined
 	local
 
-## 函数声明提升 - Function Declaration Hoisting
+### 函数声明提升 - Function Declaration Hoisting
 
 	// 可调用
 	f('helyao');
@@ -46,7 +46,7 @@ JavaScript的命名空间是使用匿名函数的立即执行函数来实现的
 		console.log(name);
 	}
 
-## 立即执行函数
+### 立即执行函数
 
 	// 函数声明
 	f1();
@@ -73,7 +73,7 @@ JavaScript的命名空间是使用匿名函数的立即执行函数来实现的
 		...
 	}();
 
-## 匿名函数的立即执行函数 - 即匿名包裹器or命名空间
+### 匿名函数的立即执行函数 - 即匿名包裹器or命名空间
 
 > (function(){...})();
 
