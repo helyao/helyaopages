@@ -29,7 +29,7 @@ categories: helyao update
 
 > 选择‘凭据管理器’，删除‘普通凭据’的git凭据
 
-<img src="https://helyao.github.io/assets/20170304/credential-manager.jpg" alt="credential manager" class="inline"/>
+<img src="https://helyao.github.io/assets/20170314/credential-manager.jpg" alt="credential manager" class="inline"/>
 
 > 此时重新git push，会看到自动弹出GitHub的Login界面，输入新的账户和密码即可
 
