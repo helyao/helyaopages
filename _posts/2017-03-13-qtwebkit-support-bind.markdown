@@ -20,23 +20,21 @@ categories: helyao update
 ### 通用兼容方法
 
 	<script type="application/javascript">
-		if (!Function.prototype.bind) {
-        		Function.prototype.bind = function (oThis) {
-            			if (typeof this !== "function") {
-              				throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-            			}
-            			var aArgs = Array.prototype.slice.call(arguments, 1),
-                			fToBind = this,
-                			fNOP = function () {},
-                			fBound = function () {
-                    				return fToBind.apply(this instanceof fNOP ? this : oThis || this,
-                            				aArgs.concat(Array.prototype.slice.call(arguments)));
-                			};
-            				fNOP.prototype = this.prototype;
-            				fBound.prototype = new fNOP();
-            				return fBound;
-        		};
-    		}
+	    if (!Function.prototype.bind) {
+                Function.prototype.bind = function (oThis) {
+            	    if (typeof this !== "function") {
+              	        throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+            	    }
+            	    var aArgs = Array.prototype.slice.call(arguments, 1), 
+			fToBind = this, fNOP = function () {}, fBound = function () {
+                    	    return fToBind.apply(this instanceof fNOP ? this : oThis || this,
+                                aArgs.concat(Array.prototype.slice.call(arguments)));
+                	};
+            	    fNOP.prototype = this.prototype;
+            	    fBound.prototype = new fNOP();
+            	    return fBound;
+        	};
+    	    }
 	</script>
 
 > 该方法可以兼容各种浏览器
@@ -44,13 +42,13 @@ categories: helyao update
 ### 支持QtWebkit的简易方法
 
 	<script type="application/javascript">
-    		Function.prototype.bind = function (bind) {
-        		var self = this;
-        		return function () {
-            			var args = Array.prototype.slice.call(arguments);
-            			return self.apply(bind || null, args);
-        		};
-    		};
+    	    Function.prototype.bind = function (bind) {
+        	var self = this;
+        	return function () {
+            	    var args = Array.prototype.slice.call(arguments);
+            	    return self.apply(bind || null, args);
+        	};
+    	    };
 	</script>
 
 > 对于确定在QtWebkit下使用，该方法即可
