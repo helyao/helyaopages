@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Let QtWebkit Support bind"
+title:  "Let QtWebkit support bind"
 date:   2017-3-13 16:10:21 +0800
 categories: helyao update
 ---
 
 ### QtWebkit
 
-> 在简单的Native App的任务中，为了减少界面和跨平台等繁杂的事情，我会选择htmlPy开开发，可以实现使用Jinja2实现界面的部署，可是内嵌的QtWebkit由于不支持bind()方法，使得很多js库无法使用，因此需要自己将该方法实现
+> 在简单的Native App的任务中，为了减少界面和跨平台等繁杂的事情，我会选择htmlPy来开发，可以实现使用Jinja2实现界面的部署，可是内嵌的QtWebkit由于不支持bind()方法，使得很多js库无法使用，因此需要自己将该方法实现
 
 ### bind()函数
 
