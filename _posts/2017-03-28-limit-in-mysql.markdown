@@ -26,6 +26,6 @@ categories: helyao update
 > 当表过大时，还需要有类似的分页操作，为了能够降低磁盘IO压力，一般的做法是对table进行id编号，该编号上建立index，每次limit分页查找改为对该id的select。
 
 
-	mysql > ALTER TABLE table ADD id INT AYUTO_INCREMENT FIRST, ADD PRIMARY KEY(id)；
+	mysql > ALTER TABLE table ADD id INT AUTO_INCREMENT FIRST, ADD PRIMARY KEY(id)；
 	mysql > CREATE INDEX idx_id ON table(id);
 	mysql > SELECT * FROM table WHERE id > 100 and id <= 300;
