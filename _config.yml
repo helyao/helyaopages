@@ -17,7 +17,6 @@ title: MiddleWare - Keeping Growing
 email: helyao@qq.com
 description: > # this means to ignore newlines until "baseurl:"
   盛年不重来，一日难再晨。
-  Where there is a will, there is a way.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: helyao
