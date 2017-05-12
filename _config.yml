@@ -23,4 +23,4 @@ github_username:  helyao
 
 # Build settings
 markdown: kramdown
-theme: wiki
+theme: minima
