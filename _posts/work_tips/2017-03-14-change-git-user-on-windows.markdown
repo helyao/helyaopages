@@ -24,12 +24,12 @@ categories: other
 
 > 打开‘管理Windows凭据’，直接搜索'Credential Manager'
 
-![search credential manager]("assets/20170314/find-credential-manager.jpg")
+![search credential manager](https://helyao.github.io/assets/20170314/find-credential-manager.jpg)
 
 > 选择‘凭据管理器’，删除‘普通凭据’的git凭据
 
-![credential manager]("assets/20170314/credential-manager.jpg")
+![credential manager](https://helyao.github.io/assets/20170314/credential-manager.jpg)
 
 > 此时重新git push，会看到自动弹出GitHub的Login界面，输入新的账户和密码即可
 
-![github login]("assets/20170314/github-login.jpg")
+![github login](https://helyao.github.io/assets/20170314/github-login.jpg)
