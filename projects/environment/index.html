@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+
+    <title>HelEnvironment &mdash; (PM2.5 PM10 CO NO2 SO2 O3)</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">-->
+    <style type="text/css">
+        body {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #828282;
+            background: #dee1e2;
+            width: 100%;
+            height: 100vh;
+        }
+        a:active, a:focus, a:hover {
+            text-decoration: none;
+            outline: none;
+        }
+        .loader-gif {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            background: url("images/loader.gif") center no-repeat #dee1e2;
+        }
+        #page-content {
+            position: relative;
+            overflow-x: hidden;
+            height: 100%;
+            width: 100%;
+        }
+        .title {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            margin: 0;
+            padding: 40px 0;
+            z-index: 100;
+        }
+        .title a {
+            padding: 5px 10px;
+            color: #f35f55;
+        }
+        .title .logo {
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .title .logo a:hover, .logo a:active, .logo a:focus {
+            color: #f14034;
+        }
+        .align-right {
+            text-align: right;
+        }
+        .title ul {
+            padding: 0;
+            margin: 4px 0 0 0;
+        }
+        .title ul li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: inline;
+        }
+        .title ul li a {
+            font-weight: 500;
+            font-size: 18px;
+            padding: 30px 10px;
+        }
+        .title ul li:not(.goto-io).active > a {
+            text-shadow: 0 0 30px #000000 !important;
+            color: #ff4034;
+            font-weight: 600;
+        }
+        .title ul li:not(.goto-io):hover > a, .title ul li:not(.goto-io):focus > a {
+            color: #ff4034;
+            font-weight: 600;
+        }
+        .title ul li.goto-io a span {
+            background: #F35F55;
+            color: #ffffff;
+            padding: 4px 20px;
+            display: -moz-inline-stack;
+            display: inline-block;
+            /* Rounded rectangle button */
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .title ul li.goto-io a:hover span {
+            background: #f14034 !important;
+            -webkit-box-shadow: 0 14px 20px -9px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0 14px 20px -9px rgba(0, 0, 0, 0.75);
+            box-shadow: 0 14px 20px -9px rgba(0, 0, 0, 0.75);
+        }
+        #header {
+            height: 800px;
+            width: 100%;
+            float: left;
+            top: 0;
+            position: relative;
+            background: url("images/img_bg_3.jpg") center no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        #header .overlay {
+            z-index: 0;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .sign {
+            z-index: 9;
+            height: 800px;
+            display: table-cell;
+            vertical-align: middle;
+            padding-top: 180px;
+        }
+        .sign h1, .sign h2 {
+            margin: 0;
+            padding: 0;
+            color: #f35f55;
+        }
+        .sign h1 {
+            font-size: 60px;
+            line-height: 1.5;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .sign h2 {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+        .btn {
+            margin-right: 4px;
+            margin-bottom: 4px;
+            font-family: "Work Sans", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-transition: 0.5s;
+            -o-transition: 0.5s;
+            transition: 0.5s;
+            padding: 8px 20px;
+        }
+        .sign .btn {
+            padding: 15px 30px;
+            background: #f35f55;
+            color: #fff;
+            border: none !important;
+            font-size: 18px;
+            text-transform: uppercase;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .sign .btn:hover {
+            background: #f14034 !important;
+            -webkit-box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
+            -moz-box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
+            box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
+        }
+        .form-inline, .form-inline .form-group, .form-inline .form-group .form-control {
+            width: 100%;
+        }
+        .form-inline .form-group .form-control {
+            padding-right: 9em;
+            box-shadow: none;
+            background: #ffffff;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            height: 54px;
+            font-size: 18px;
+            font-weight: 300;
+        }
+        .form-group button {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+        .form-group button {
+            padding: 15px 30px;
+            background: #f35f55;
+            color: #fff;
+            border: none !important;
+            font-size: 18px;
+            text-transform: uppercase;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .form-group button:hover {
+            background: #f14034 !important;
+            -webkit-box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
+            -moz-box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
+            box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75) !important;
+        }
+        footer {
+            display: block;
+            padding: 7em 0 0 0;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<!-- loader -->
+<div class="loader-gif"></div>
+
+<div id="page-content">
+    <!-- navigation -->
+    <nav class="title" role="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="logo"><a href="#">helyao.zeus</a></div>
+                </div>
+                <div class="col-md-10 align-right">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">China</a></li>
+                        <li><a href="#">Beijing</a></li>
+                        <li><a href="#">Location</a></li>
+                        <li class="goto-io"><a href="https://helyao.github.io/"><span>More</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- header -->
+    <header id="header" role="banner">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="sign animate-box" data-animate-effect="fadeIn">
+                        <h1>Fresh-air & Bule-sky</h1>
+                        <h2>Parameters: PM2.5, PM10, CO, NO<sub>2</sub>, SO<sub>2</sub>, O<sub>3</sub></h2>
+                        <div class="row">
+                            <form class="form-inline">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="form-group" id="search">
+                                        <input type="text" class="form-control" id="city" placeholder="Enter city name here">
+                                        <button type="submit" class="btn btn-default">Check</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- footer -->
+    <footer id="footer" role="contentinfo">
+        <div class="container">
+            <div class="row copyright">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <small class="block">&copy; 2017 HELYAO-GREECE. All Rights Reserved.</small>
+                    </p>
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</div>
+
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/bootstrap.min.js" type="application/javascript"></script>
+<!--<script src="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>-->
+<script src="http://cdn.bootcss.com/echarts/3.5.4/echarts.min.js"></script>
+<!--<script src="http://cdn.bootcss.com/echarts/3.5.4/extension/bmap.min.js"></script>-->
+<script src="js/pinyin.js" type="application/javascript"></script>
+<script type="application/javascript">
+    ;(function() {
+    	// hidden loader.gif
+        var loaderPage = function () {
+        	$(".loader-gif").fadeOut("slow");
+        };
+
+        // switch menu page
+        var activeMenu = function() {
+        	$(".title ul li").on("click", function() {
+        		$(".title ul li").removeClass('active');
+        		$(this).toggleClass('active');
+            });
+        };
+
+        //
+        var all_city = [['北京', 'beijing'], ['天津', 'tianjin'], ['上海', 'shanghai'], ['重庆', 'chongqing']];
+
+        // --- ACTIONS when document loaded ---
+        $(function () {
+        	loaderPage();
+	        activeMenu();
+        });
+    }());
+</script>
+</body>
+</html>
